@@ -18,6 +18,7 @@ Plugin for [YOURLS](http://yourls.org)
 
 1. Add in your api request the parameter `action=bulkshortener`
 2. Send the list of the URLs to be shortened using the parameter `urls[]`.
+3. The response contains each shortened URL in a single line.
 
 ## History
 
