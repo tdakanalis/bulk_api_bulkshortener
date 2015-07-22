@@ -29,7 +29,7 @@ function bulk_api_bulkshortener($action) {
     $title = (isset($_REQUEST['title']) ? $_REQUEST['title'] : '');
     $urls = (isset($_REQUEST['urls']) ? $_REQUEST['urls'] : array());
     
-    foreach ($_REQUEST['urls'] as $url) {
+    foreach ($urls as $url) {
         $return = yourls_add_new_link($url, $keyword, $title);
         echo $return['shorturl'] . "\n";
     }
