@@ -3,11 +3,12 @@
 Plugin Name: Bulk URL shortener
 Plugin URI: https://github.com/tdakanalis/bulk_api_bulkshortener
 Description: Shorten URLs in bulk (a single request with many URLs to shorten).
-Version: 1.0
+Version: 1.1
 Author: Stelios Mavromichalis
 Author URI: http://www.cytech.gr
 */
 
+header('Content-Type:text/json;charset=utf-8');
 yourls_add_action('api', 'bulk_api_bulkshortener');
 
 function bulk_api_bulkshortener($action) {
@@ -29,10 +30,12 @@ function bulk_api_bulkshortener($action) {
     $title = (isset($_REQUEST['title']) ? $_REQUEST['title'] : '');
     $urls = (isset($_REQUEST['urls']) ? $_REQUEST['urls'] : array());
     
+    $urlArray = array();
     foreach ($urls as $url) {
-        $return = yourls_add_new_link($url, $keyword, $title);
-        echo $return['shorturl'] . "\n";
+        $urlArray[$url] = yourls_add_new_link($url, $keyword, $title);
+        // $return = yourls_add_new_link($url, $keyword, $title);
+        // echo $return['shorturl'] . "\n";
     }
-    
+    echo json_encode($urlArray);
     die();
 }
