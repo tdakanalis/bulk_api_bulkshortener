@@ -8,7 +8,6 @@ Author: Stelios Mavromichalis
 Author URI: http://www.cytech.gr
 */
 
-header('Content-Type:text/json;charset=utf-8');
 yourls_add_action('api', 'bulk_api_bulkshortener');
 
 function bulk_api_bulkshortener($action) {
@@ -36,6 +35,7 @@ function bulk_api_bulkshortener($action) {
         // $return = yourls_add_new_link($url, $keyword, $title);
         // echo $return['shorturl'] . "\n";
     }
+    header('Content-Type:text/json;charset=utf-8');
     echo json_encode($urlArray);
     die();
 }
